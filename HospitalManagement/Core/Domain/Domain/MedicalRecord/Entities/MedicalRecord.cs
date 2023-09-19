@@ -1,0 +1,31 @@
+﻿using Domain.MedicalRecord.Exceptions;
+using Domain.MedicalRecord.Ports;
+
+namespace Domain.MedicalRecord.Entities
+{
+    public class MedicalRecord
+    {
+        public int Id { get; set; }
+        public Doctor.Entities.Doctor Doctor { get; set; }
+        public Patient.Entities.Patient Patient { get; set; }
+
+        public void ValidateState()
+        {
+            if (Patient == null)
+                throw new PatientNullException();
+
+            if (Doctor == null)
+                throw new DoctorNullException();
+        }
+
+        public async Task Save(IMedicalRecordRepository repository)
+        {
+            ValidateState();
+
+            if (Id == 0)
+                Id = await repository.CreateMedicalRecordAsync(this);
+            else
+                await repository.UpdateMedicalRecordAsync(this);
+        }
+    }
+}
