@@ -20,7 +20,7 @@ namespace Domain.Doctor.Entities
         public void ValidateState()
         {
             if (string.IsNullOrEmpty(Name))
-                throw new NullNameException();
+                throw new NameNullException();
 
             if (string.IsNullOrEmpty(LastName))
                 throw new LastNameNullException();
