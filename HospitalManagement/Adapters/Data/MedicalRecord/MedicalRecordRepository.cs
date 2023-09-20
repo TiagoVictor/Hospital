@@ -1,5 +1,4 @@
-﻿using Azure.Core;
-using Domain.MedicalRecord.Ports;
+﻿using Domain.MedicalRecord.Ports;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data.MedicalRecord
