@@ -1,6 +1,7 @@
 ﻿using Domain.Patient.Enum;
 using Domain.Patient.Exceptions;
 using Domain.Patient.Ports;
+using Entity =  Domain.MedicalRecord.Entities;
 
 namespace Domain.Patient.Entities
 {
@@ -16,6 +17,7 @@ namespace Domain.Patient.Entities
         public string LastName { get; set; }
         public string CellPhoneNumber { get; set; }
         public Status Status { get; set; }
+        public IList<Entity.MedicalRecord> MedicalRecords { get; set; }
 
         private void ValidateState()
         {
