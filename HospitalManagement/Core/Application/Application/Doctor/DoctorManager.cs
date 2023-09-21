@@ -63,7 +63,7 @@ namespace Application.Doctor
                 {
                     Success = false,
                     Message = "There was an error during using DB.",
-                    ErrorCode = ErrorCodes.DOCTOR_COLD_NOT_SAVE
+                    ErrorCode = ErrorCodes.DOCTOR_COULD_NOT_SAVE
                 };
             }
         }
@@ -176,7 +176,7 @@ namespace Application.Doctor
                 {
                     Success = false,
                     Message = "There was an error during using DB.",
-                    ErrorCode = ErrorCodes.DOCTOR_COLD_NOT_UPDATE
+                    ErrorCode = ErrorCodes.DOCTOR_COULD_NOT_UPDATE
                 };
             }
         }
