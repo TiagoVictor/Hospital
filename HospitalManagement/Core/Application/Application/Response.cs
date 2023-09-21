@@ -17,6 +17,13 @@
         PATIENT_COULD_NOT_SAVE = 103,
         PATIENT_COULD_NOT_UPDATE = 104,
         PATIENT_NOT_FOUND = 105,
+
+        // MedicalRecord ErrorCode 200 to 299
+        MEDICAL_RECORD_INVALID_PATIENT = 200,
+        MEDICAL_RECORD_INVALID_DOCTOR = 201,
+        MEDICAL_RECORD_COULD_NOT_SAVE = 202,
+        MEDICAL_RECORD_COULD_NOT_UPDATE = 203,
+        MEDICAL_RECORD_NOT_FOUND = 204,
     }
 
     public abstract class Response
