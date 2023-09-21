@@ -1,4 +1,16 @@
+using Application.Doctor;
+using Application.Doctor.Ports;
+using Application.MedicalRecord;
+using Application.MedicalRecord.Ports;
+using Application.Patient;
+using Application.Patient.Ports;
 using Data;
+using Data.Doctor;
+using Data.MedicalRecord;
+using Data.Patient;
+using Domain.Doctor.Ports;
+using Domain.MedicalRecord.Ports;
+using Domain.Patient.Ports;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +22,16 @@ builder.Services.AddControllersWithViews();
 var connectionString = builder.Configuration.GetConnectionString("Main");
 builder.Services.AddDbContext<HospitalDbContext>(
     options => options.UseSqlServer(connectionString));
+
+#region IOC
+builder.Services.AddScoped<IPatientManager, PatientManager>();
+builder.Services.AddScoped<IDoctorManager, DoctorManager>();
+builder.Services.AddScoped<IMedicalRecordManager, MedicalRecordManager>();
+
+builder.Services.AddScoped<IPatientRepository, PatientRepository>();
+builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
+builder.Services.AddScoped<IMedicalRecordRepository, MedicalRecordRepository>();
+#endregion
 
 var app = builder.Build();
 
