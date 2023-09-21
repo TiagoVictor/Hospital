@@ -120,7 +120,7 @@ namespace Application.Patient
                     return new PatientResponse
                     {
                         Success = false,
-                        Message = "Patient not found",
+                        Message = "Patient not found.",
                         ErrorCode = ErrorCodes.PATIENT_NOT_FOUND
                     };
                 }
