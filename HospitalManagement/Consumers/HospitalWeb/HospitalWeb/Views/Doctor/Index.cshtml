@@ -1,0 +1,33 @@
+﻿@model DoctorViewModel;
+@{
+    ViewData["Title"] = "Doctor";
+}
+
+<h1>Doctor</h1>
+<a class="nav-link text-dark" asp-area="" asp-controller="Doctor" asp-action="CreateDoctor">Cadastrar Médico</a>
+
+<table class="table" style="text-align:center">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Sobrenome</th>
+            <th scope="col">Crm</th>
+            <th scope="col">Status</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Deletar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.Models)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.LastName</td>
+                <td>@item.Crm</td>
+                <td>@item.Status</td>
+                <td><a asp-controller="Doctor" asp-action="UpdateDoctor" asp-route-id="@item.Id">Editar</a></td>
+                <td><a asp-controller="Doctor" asp-action="DeleteDoctor" asp-route-id="@item.Id">Deletar</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
