@@ -4,18 +4,24 @@ using Application.MedicalRecord.Ports;
 using Application.MedicalRecord.Requests;
 using Application.MedicalRecord.Responses;
 using Application.Patient.Dto;
+using Domain.Doctor.Ports;
 using Domain.MedicalRecord.Exceptions;
 using Domain.MedicalRecord.Ports;
+using Domain.Patient.Ports;
 
 namespace Application.MedicalRecord
 {
     public class MedicalRecordManager : IMedicalRecordManager
     {
         private readonly IMedicalRecordRepository _medicalRecordRepository;
+        private readonly IPatientRepository _patientRepository;
+        private readonly IDoctorRepository _doctorRepository;
 
-        public MedicalRecordManager(IMedicalRecordRepository medicalRecordRepository)
+        public MedicalRecordManager(IMedicalRecordRepository medicalRecordRepository, IPatientRepository patientRepository, IDoctorRepository doctorRepository)
         {
             _medicalRecordRepository = medicalRecordRepository;
+            _patientRepository = patientRepository;
+            _doctorRepository = doctorRepository;
         }
 
         public async Task<MedicalResponse> CreateMedicalRecordAsync(CreateMedicalRecordRequest request)
@@ -23,6 +29,8 @@ namespace Application.MedicalRecord
             try
             {
                 var medicalRecord = MedicalRecordDto.MapToEntity(request.Data);
+                medicalRecord.Patient = await _patientRepository.GetPatientByIdAsync(request.Data.PatientDto.Id);
+                medicalRecord.Doctor = await _doctorRepository.GetDoctorById(request.Data.DoctorDto.Id);
 
                 await medicalRecord.Save(_medicalRecordRepository);
                 request.Data.Id = request.Data.Id;
@@ -92,7 +100,7 @@ namespace Application.MedicalRecord
             };
         }
 
-        public async Task<MedicalResponse> GetMedicalRecords()
+        public async Task<MedicalResponse> GetMedicalRecordsAsync()
         {
             var medicalRecords = await _medicalRecordRepository.GetMedicalRecordsAsync();
             var medicalResponse = new MedicalResponse();

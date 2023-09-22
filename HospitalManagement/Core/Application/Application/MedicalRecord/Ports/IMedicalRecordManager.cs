@@ -9,6 +9,6 @@ namespace Application.MedicalRecord.Ports
         Task<MedicalResponse> UpdateMedicalRecordAsync(UpdateMedicalRecordRequest request);
         Task DeleteMedicalRecordAsync(int id);
         Task<MedicalResponse> GetMedicalRecordByIdAsync(int id);
-        Task<MedicalResponse> GetMedicalRecords();
+        Task<MedicalResponse> GetMedicalRecordsAsync();
     }
 }

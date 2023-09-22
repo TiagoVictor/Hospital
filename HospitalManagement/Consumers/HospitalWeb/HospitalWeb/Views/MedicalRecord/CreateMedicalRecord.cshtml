@@ -1,0 +1,27 @@
+﻿@model MedicalRecordViewModel;
+@{
+}
+
+<h1>Cadastrar Ficha</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Post" method="post">
+            <div asp-validation-summary="ModelOnly"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Patient" class="control-label"></label>
+                <select asp-for="Patient.Id">
+                    <option value="">Selecione</option>
+                    @foreach(var item in Model.Patients)
+                    {
+                        <option value="@item.Id">@item.Name @item.LastName</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group mt-1">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
