@@ -1,0 +1,31 @@
+﻿@model PatientViewModel;
+@{
+}
+<h1>Paciente</h1>
+<a class="nav-link text-dark" asp-area="" asp-controller="Patient" asp-action="CreatePatient">Cadastrar Paciente</a>
+
+<table class="table" style="text-align:center">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Sobrenome</th>
+            <th scope="col">Nº de Celular</th>
+            <th scope="col">Status</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Deletar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.Models)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.LastName</td>
+                <td>@item.CellPhoneNumber</td>
+                <td>@item.Status</td>
+                <td><a asp-controller="Patient" asp-action="UpdatePatient" asp-route-id="@item.Id">Editar</a></td>
+                <td><a asp-controller="Patient" asp-action="DeletePatient" asp-route-id="@item.Id">Deletar</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

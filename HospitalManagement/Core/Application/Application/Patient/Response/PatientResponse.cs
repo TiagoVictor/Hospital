@@ -5,6 +5,6 @@ namespace Application.Patient.Responses
     public class PatientResponse : Response
     {
         public PatientDto Data;
-        public List<PatientDto> Patients;
+        public List<PatientDto> Patients = new();
     }
 }
