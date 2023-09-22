@@ -9,7 +9,7 @@ namespace Domain.Doctor.Entities
     {
         public Doctor()
         {
-            Status = Status.Active;
+            Status = Status.Ativo;
         }
 
         public int Id { get; set; }
