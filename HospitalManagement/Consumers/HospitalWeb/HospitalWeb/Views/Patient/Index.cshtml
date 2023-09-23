@@ -1,0 +1,26 @@
+﻿@model PatientViewModel;
+@{
+}
+<h1>Consulta de Fichas Médicas</h1>
+
+<table class="table" style="text-align:center">
+    <thead>
+        <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Responsável</th>
+            <th scope="col">Nº de Celular</th>
+            <th scope="col">Visualizar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model.MedicalRecords)
+        {
+            <tr>
+                <td>@item.Patient.Name @item.Patient.LastName</td>
+                <td>@item.Doctor.Name @item.Doctor.LastName</td>
+                <td>@item.Patient.CellPhoneNumber</td>
+                <td><a asp-controller="Patient" asp-action="MedicalRecordReport" asp-route-id="@item.Id">Visualizar</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,47 @@
+﻿@model LoginViewModel;
+@{
+    Layout = "_LoginLayout";
+}
+
+<main class="form-signin">
+    <form asp-action="Post" method="post">
+        <h1 class="h3 mb-3 fw-normal">Cadastre-se</h1>
+
+        <div class="form-group mt-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" type="text" class="form-control">
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group mt-3">
+            <label asp-for="LastName" class="form-label"></label>
+            <input asp-for="LastName" type="text" class="form-control">
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+        <div class="form-group mt-3">
+            <label asp-for="UserType"></label>
+            <input type="text" asp-for="UserType" value="@UserType.Paciente" class="form-control" readonly />
+        </div>
+
+        <div class="form-group mt-3">
+            <label asp-for="CellPhoneNumber" class="form-label"></label>
+            <input asp-for="CellPhoneNumber" onkeyup="handlePhone(event)" type="text" class="form-control">
+            <span asp-validation-for="CellPhoneNumber" class="text-danger"></span>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Salvar</button>
+    </form>
+</main>
+
+<script>
+    const handlePhone = (event) => {
+        let input = event.target
+        input.value = phoneMask(input.value)
+    }
+
+    const phoneMask = (value) => {
+        if (!value) return ""
+        value = value.replace(/\D/g, '')
+        value = value.replace(/(\d{2})(\d)/, "($1) $2")
+        value = value.replace(/(\d)(\d{4})$/, "$1-$2")
+        return value
+    }
+</script>

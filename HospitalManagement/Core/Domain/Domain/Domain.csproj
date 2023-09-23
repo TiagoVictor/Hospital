@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Doctor\Enum\**" />
+    <Compile Remove="Patient\Enum\**" />
+    <EmbeddedResource Remove="Doctor\Enum\**" />
+    <EmbeddedResource Remove="Patient\Enum\**" />
+    <None Remove="Doctor\Enum\**" />
+    <None Remove="Patient\Enum\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="MedicalRecord\Enum\" />
+    <Folder Include="Patient\ValueObjects\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="libphonenumber-csharp" Version="8.13.21" />
+  </ItemGroup>
+
+</Project>
