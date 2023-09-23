@@ -10,5 +10,6 @@ namespace Application.Doctor.Ports
         Task DeleteDoctorAsync(int id);
         Task<DoctorResponse> GetDoctorByIdAsync(int id);
         Task<DoctorResponse> GetDoctorAsync();
+        Task<DoctorResponse> GetDoctorByCrmAsync(string crm);
     }
 }

@@ -35,6 +35,13 @@ namespace Data.Patient
                 .SaveChangesAsync();
         }
 
+        public async Task<Domain.Patient.Entities.Patient> GetPatientByCellPhoneAsync(string cellPhone)
+        {
+            return await _context
+                .Patients
+                .FirstOrDefaultAsync(x => x.CellPhoneNumber == cellPhone);
+        }
+
         public async Task<Domain.Patient.Entities.Patient> GetPatientByIdAsync(int id)
         {
             return await _context

@@ -39,7 +39,8 @@ namespace Data.Patient.Mapping
                 .HasColumnType("INTEGER")
                 .HasMaxLength(10);
 
-            builder.HasIndex(x => x.Id);
+            builder.HasIndex(x => x.Id, "IDX_PATIENT_ID");
+            builder.HasIndex(x => x.CellPhoneNumber, "IDX_PATIENT_CELLPHONE").IsUnique();
         }
     }
 }
