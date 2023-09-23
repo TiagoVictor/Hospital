@@ -3,10 +3,12 @@ using Application.MedicalRecord.Ports;
 using Application.MedicalRecord.Requests;
 using Application.Patient.Ports;
 using HospitalWeb.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HospitalWeb.Controllers
 {
+    [Authorize(Roles = "Doutor")]
     public class MedicalRecordController : Controller
     {
         private readonly IMedicalRecordManager _medicalRecordManager;
@@ -54,6 +56,14 @@ namespace HospitalWeb.Controllers
         public async Task<IActionResult> Post(MedicalRecordViewModel medicalRecordViewModel)
         {
             ModelState.Remove("Id");
+            ModelState.Remove("Doctor.Crm");
+            ModelState.Remove("Doctor.Name");
+            ModelState.Remove("Doctor.LastName");
+            ModelState.Remove("Patient.Name");
+            ModelState.Remove("Patient.LastName");
+            ModelState.Remove("Patient.CellPhoneNumber");
+            medicalRecordViewModel.Doctor.Id = Convert.ToInt32(User.FindFirst("Id").Value);
+
             if (ModelState.IsValid)
             {
                 var request = new CreateMedicalRecordRequest
@@ -63,7 +73,7 @@ namespace HospitalWeb.Controllers
 
                 var response = await _medicalRecordManager.CreateMedicalRecordAsync(request);
 
-                if (response.Success) return RedirectToAction("UpdateMedicalRecord", response.Data.Id);
+                if (response.Success) return RedirectToAction("Index");
 
                 return response.ErrorCode switch
                 {
@@ -84,6 +94,11 @@ namespace HospitalWeb.Controllers
         [HttpPost]
         public async Task<IActionResult> Update(MedicalRecordViewModel medicalRecordViewModel)
         {
+            ModelState.Remove("Doctor.Crm");
+            ModelState.Remove("Doctor.Name");
+            ModelState.Remove("Doctor.LastName");
+            ModelState.Remove("Patient.LastName");
+            medicalRecordViewModel.Doctor.Id = Convert.ToInt32(User.FindFirst("Id").Value);
             if (ModelState.IsValid)
             {
                 var request = new UpdateMedicalRecordRequest

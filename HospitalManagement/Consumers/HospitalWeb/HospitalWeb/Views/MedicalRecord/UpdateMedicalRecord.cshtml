@@ -8,6 +8,7 @@
     <form asp-action="Update" method="post">
         <div asp-validation-summary="ModelOnly"></div>
         <input type="hidden" asp-for="Id" />
+        <input type="hidden" asp-for="Patient.Id" />
         <div class="row">
             <div class="col-md-6">
                 <label asp-for="Patient.Name"></label>
