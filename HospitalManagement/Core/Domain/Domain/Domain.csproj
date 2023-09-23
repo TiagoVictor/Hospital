@@ -7,9 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Doctor\Enum\" />
+    <Compile Remove="Doctor\Enum\**" />
+    <Compile Remove="Patient\Enum\**" />
+    <EmbeddedResource Remove="Doctor\Enum\**" />
+    <EmbeddedResource Remove="Patient\Enum\**" />
+    <None Remove="Doctor\Enum\**" />
+    <None Remove="Patient\Enum\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="MedicalRecord\Enum\" />
-    <Folder Include="Patient\Enum\" />
     <Folder Include="Patient\ValueObjects\" />
   </ItemGroup>
 
