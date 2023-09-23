@@ -33,8 +33,8 @@ namespace Domain.Patient.Entities
 
         public async Task Save(IPatientRepository repository)
         {
-            PadronizeCellphoneNumber();
             ValidateState();
+            PadronizeCellphoneNumber();
 
             if (Id == 0)
                 Id = await repository.CreatePatientAsync(this);

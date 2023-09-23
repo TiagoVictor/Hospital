@@ -103,7 +103,7 @@ namespace Application.Patient
         {
             var patient = PatientDto.MapToDto(await _patientRepository.GetPatientByIdAsync(id));
 
-            if (patient == null)
+            if (string.IsNullOrEmpty(patient.LastName))
             {
                 return new PatientResponse
                 {

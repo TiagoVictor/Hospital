@@ -116,7 +116,7 @@ namespace Application.Doctor
         {
             var doctor = DoctorDto.MapToDto(await _doctorRepository.GetDoctorById(id));
 
-            if (doctor == null)
+            if (string.IsNullOrEmpty(doctor.Name))
             {
                 return new DoctorResponse
                 {

@@ -45,7 +45,7 @@ namespace Data.Doctor
         {
             return await _context
                 .Doctors
-                .FirstOrDefaultAsync(x => x.Id == id) ?? new();
+                .FirstOrDefaultAsync(x => x.Id == id) ?? null;
         }
 
         public async Task<List<Domain.Doctor.Entities.Doctor>> GetDoctorsAsync()

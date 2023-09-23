@@ -91,7 +91,7 @@ namespace Application.MedicalRecord
         {
             var medicalRecord = MedicalRecordDto.MapToDto(await _medicalRecordRepository.GetMedicalRecordByIdAsync(id));
 
-            if (medicalRecord == null)
+            if (string.IsNullOrEmpty(medicalRecord.Description))
             {
                 return new MedicalResponse
                 {
