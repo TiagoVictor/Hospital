@@ -93,7 +93,7 @@ namespace HospitalWeb.Controllers
                         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authProperties);
 
 
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "Patient");
                     }
                 }
 

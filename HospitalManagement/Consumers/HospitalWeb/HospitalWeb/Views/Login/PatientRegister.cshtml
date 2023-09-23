@@ -17,17 +17,12 @@
         </div>
         <div class="form-group mt-3">
             <label asp-for="UserType"></label>
-            <input type="text" asp-for="UserType" value="@UserType.Doutor" class="form-control" readonly />
+            <input type="text" asp-for="UserType" value="@UserType.Paciente" class="form-control" readonly />
         </div>
 
         <div class="form-group mt-3">
             <label asp-for="CellPhoneNumber" class="form-label"></label>
             <input asp-for="CellPhoneNumber" type="text" class="form-control">
-        </div>
-
-        <div class="form-group mt-3">
-            <label asp-for="Password" class="form-label"></label>
-            <input asp-for="Password" type="password" class="form-control">
         </div>
         <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Salvar</button>
     </form>

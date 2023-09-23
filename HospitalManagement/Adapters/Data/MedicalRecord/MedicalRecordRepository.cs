@@ -39,6 +39,7 @@ namespace Data.MedicalRecord
             return await _context
                 .MedicalRecords
                 .Include(x => x.Patient)
+                .Include(x => x.Doctor)
                 .FirstOrDefaultAsync(x => x.Id == id) ?? new();
         }
 
@@ -48,6 +49,16 @@ namespace Data.MedicalRecord
                 .MedicalRecords
                 .Include(x => x.Patient)
                 .Include(x => x.Doctor)
+                .ToListAsync();
+        }
+
+        public async Task<List<Domain.MedicalRecord.Entities.MedicalRecord>> GetMedicalRecordsByPatientIdAsync(int patientId)
+        {
+            return await _context
+                .MedicalRecords
+                .Include(x => x.Patient)
+                .Include(x => x.Doctor)
+                .Where(x => x.Patient.Id == patientId)
                 .ToListAsync();
         }
 

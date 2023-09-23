@@ -1,4 +1,5 @@
 ﻿using Application;
+using Application.MedicalRecord.Ports;
 using Application.Patient.Ports;
 using Application.Patient.Requests;
 using HospitalWeb.Models;
@@ -7,23 +8,25 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HospitalWeb.Controllers
 {
-    [Authorize("Paciente")]
+    [Authorize(Roles = "Paciente")]
     public class PatientController : Controller
     {
         private readonly IPatientManager _patientManager;
+        private readonly IMedicalRecordManager _medicalRecordManager;
 
-        public PatientController(IPatientManager patientManager)
+        public PatientController(IPatientManager patientManager, IMedicalRecordManager medicalRecordManager)
         {
             _patientManager = patientManager;
+            _medicalRecordManager = medicalRecordManager;
         }
 
         public async Task<IActionResult> Index()
         {
-            var patient = await _patientManager.GetPatientsAsync();
+            var medicalRecords = await _medicalRecordManager.GetMedicalRecordsByPatientIdAsync(Convert.ToInt32(User.FindFirst("Id").Value));
 
             var patientViewModel = new PatientViewModel();
 
-            patient.Patients.ForEach(x => patientViewModel.Models.Add(PatientViewModel.DtoToView(x)));
+            medicalRecords.MedicalRecords.ForEach(x => patientViewModel.MedicalRecords.Add(MedicalRecordViewModel.DtoToView(x)));
 
             return View(patientViewModel);
         }
@@ -38,6 +41,17 @@ namespace HospitalWeb.Controllers
             var patient = await _patientManager.GetPatientByIdAsync(id);
 
             return View(PatientViewModel.DtoToView(patient.Data));
+        }
+
+        public async Task<IActionResult> MedicalRecordReport(int id)
+        {
+            var medicalRecord = await _medicalRecordManager.GetMedicalRecordByIdAsync(id);
+            var medicalView = MedicalRecordViewModel.DtoToView(medicalRecord.Data);
+
+            var patients = await _patientManager.GetPatientsAsync();
+            patients.Patients.ForEach(x => medicalView.Patients.Add(PatientViewModel.DtoToView(x)));
+
+            return View(medicalView);
         }
 
         [HttpPost]
@@ -95,7 +109,7 @@ namespace HospitalWeb.Controllers
         public async Task<IActionResult> GetById(int id)
         {
             var patient = await _patientManager.GetPatientByIdAsync(id);
-            
+
             if (patient == null) return NotFound(patient);
 
             return View(patient);
