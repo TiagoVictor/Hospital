@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using Application.Doctor.Dto;
-using Domain.Doctor.Enum;
 
 namespace HospitalWeb.Models
 {
@@ -20,10 +19,6 @@ namespace HospitalWeb.Models
         [DisplayName("Crm")]
         [Required(ErrorMessage = "O campo Crm é obrigatório.")]
         public string Crm { get; set; }
-
-        [DisplayName("Status")]
-        [Required(ErrorMessage = "O campo Status é obrigatório.")]
-        public Status Status { get; set; }
         public List<DoctorViewModel> Models { get; set; } = new();
 
         public static DoctorDto ViewToDto(DoctorViewModel doctorViewModel)
@@ -34,7 +29,6 @@ namespace HospitalWeb.Models
                 Name = doctorViewModel.Name,
                 LastName = doctorViewModel.LastName,
                 Crm = doctorViewModel.Crm,
-                Status = doctorViewModel.Status
             };
         }
 
@@ -46,7 +40,6 @@ namespace HospitalWeb.Models
                 Name = doctorDto.Name,
                 LastName = doctorDto.LastName,
                 Crm = doctorDto.Crm,
-                Status = doctorDto.Status
             };
         }
     }

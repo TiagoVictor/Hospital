@@ -1,5 +1,4 @@
-﻿using Domain.Doctor.Enum;
-using Domain.Doctor.Exceptions;
+﻿using Domain.Doctor.Exceptions;
 using Domain.Doctor.Ports;
 using Entity = Domain.MedicalRecord.Entities;
 
@@ -7,16 +6,10 @@ namespace Domain.Doctor.Entities
 {
     public class Doctor
     {
-        public Doctor()
-        {
-            Status = Status.Ativo;
-        }
-
         public int Id { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
         public string Crm { get; set; }
-        public Status Status { get; set; }
         public IList<Entity.MedicalRecord> MedicalRecords { get; set; }
 
         public void ValidateState()

@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Doctor\Enum\" />
     <Folder Include="MedicalRecord\Enum\" />
+    <Folder Include="Patient\Enum\" />
     <Folder Include="Patient\ValueObjects\" />
   </ItemGroup>
 

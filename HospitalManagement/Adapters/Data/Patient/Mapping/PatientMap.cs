@@ -33,12 +33,6 @@ namespace Data.Patient.Mapping
                 .HasColumnType("NVARCHAR")
                 .HasMaxLength(20);
 
-            builder.Property(x => x.Status)
-                .IsRequired()
-                .HasColumnName("Status")
-                .HasColumnType("INTEGER")
-                .HasMaxLength(10);
-
             builder.HasIndex(x => x.Id, "IDX_PATIENT_ID");
             builder.HasIndex(x => x.CellPhoneNumber, "IDX_PATIENT_CELLPHONE").IsUnique();
         }
