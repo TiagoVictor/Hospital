@@ -1,9 +1,7 @@
-﻿using Application.Doctor.Dto;
-using Application.MedicalRecord.Dto;
+﻿using Application.MedicalRecord.Dto;
 using Application.MedicalRecord.Ports;
 using Application.MedicalRecord.Requests;
 using Application.MedicalRecord.Responses;
-using Application.Patient.Dto;
 using Domain.Doctor.Ports;
 using Domain.MedicalRecord.Exceptions;
 using Domain.MedicalRecord.Ports;
@@ -57,6 +55,15 @@ namespace Application.MedicalRecord
                     Success = false,
                     Message = ex.Message,
                     ErrorCode = ErrorCodes.MEDICAL_RECORD_INVALID_PATIENT
+                };
+            }
+            catch (DescriptionNullException ex)
+            {
+                return new MedicalResponse
+                {
+                    Success = false,
+                    Message = ex.Message,
+                    ErrorCode = ErrorCodes.MEDICAL_RECORD_INVALID_DESCRIPTION
                 };
             }
             catch (Exception)
@@ -177,6 +184,15 @@ namespace Application.MedicalRecord
                     Success = false,
                     Message = ex.Message,
                     ErrorCode = ErrorCodes.MEDICAL_RECORD_INVALID_PATIENT
+                };
+            }
+            catch (DescriptionNullException ex)
+            {
+                return new MedicalResponse
+                {
+                    Success = false,
+                    Message = ex.Message,
+                    ErrorCode = ErrorCodes.MEDICAL_RECORD_INVALID_DESCRIPTION
                 };
             }
             catch (Exception)
