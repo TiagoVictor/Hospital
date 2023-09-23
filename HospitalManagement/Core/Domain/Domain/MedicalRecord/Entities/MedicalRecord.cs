@@ -17,6 +17,9 @@ namespace Domain.MedicalRecord.Entities
 
             if (Doctor == null)
                 throw new DoctorNullException();
+            
+            if (string.IsNullOrEmpty(Description))
+                throw new DescriptionNullException();
         }
 
         public async Task Save(IMedicalRecordRepository repository)

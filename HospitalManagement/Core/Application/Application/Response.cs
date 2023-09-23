@@ -24,6 +24,7 @@
         MEDICAL_RECORD_COULD_NOT_SAVE = 202,
         MEDICAL_RECORD_COULD_NOT_UPDATE = 203,
         MEDICAL_RECORD_NOT_FOUND = 204,
+        MEDICAL_RECORD_INVALID_DESCRIPTION = 205,
     }
 
     public abstract class Response

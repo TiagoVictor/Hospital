@@ -23,13 +23,6 @@
                 <input asp-for="CellPhoneNumber" class="form-control" />
                 <span asp-validation-for="CellPhoneNumber" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Status"></label>
-                <select asp-for="Status" class="form-control">
-                    <option value="@Domain.Patient.Enum.Status.Ativo">Ativo</option>
-                    <option value="@Domain.Patient.Enum.Status.Inativo">Inativo</option>
-                </select>
-            </div>
             <div class="form-group mt-1">
                 <input type="submit" value="Atualizar" class="btn btn-primary" />
             </div>

@@ -1,5 +1,4 @@
-﻿using Domain.Patient.Enum;
-using Application.Patient.Dto;
+﻿using Application.Patient.Dto;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -20,10 +19,6 @@ namespace HospitalWeb.Models
         [DisplayName("Numero de Celular")]
         [Required(ErrorMessage = "Campo Numero de Celular é obrigatório.")]
         public string CellPhoneNumber { get; set; }
-
-        [DisplayName("Status")]
-        [Required(ErrorMessage = "Campo Status é obrigatório.")]
-        public Status Status { get; set; }
         public List<PatientViewModel> Models { get; set; } = new();
         public List<MedicalRecordViewModel> MedicalRecords { get; set; } = new();
 
@@ -35,7 +30,6 @@ namespace HospitalWeb.Models
                 Name = model.Name,
                 LastName = model.LastName,
                 CellPhoneNumber = model.CellPhoneNumber,
-                Status = model.Status,
             };
         }
 
@@ -47,7 +41,6 @@ namespace HospitalWeb.Models
                 Name = dto.Name,
                 LastName = dto.LastName,
                 CellPhoneNumber = dto.CellPhoneNumber,
-                Status = dto.Status,
             };
         }
     }

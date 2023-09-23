@@ -107,6 +107,7 @@ namespace Application.Doctor
 
             return new DoctorResponse
             {
+                Success = true,
                 Data = doctor
             };
         }
@@ -127,6 +128,7 @@ namespace Application.Doctor
 
             return new DoctorResponse
             {
+                Success = true,
                 Data = doctor
             };
         }
@@ -150,7 +152,6 @@ namespace Application.Doctor
                 doctor.Name = request.Data.Name;
                 doctor.LastName = request.Data.LastName;
                 doctor.Crm = request.Data.Crm;
-                doctor.Status = request.Data.Status;
 
                 await doctor.Save(_doctorRepository);
 

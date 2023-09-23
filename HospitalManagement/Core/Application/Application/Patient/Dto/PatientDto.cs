@@ -1,5 +1,4 @@
-﻿using Domain.Patient.Enum;
-using Entity = Domain.Patient.Entities;
+﻿using Entity = Domain.Patient.Entities;
 
 namespace Application.Patient.Dto
 {
@@ -9,7 +8,6 @@ namespace Application.Patient.Dto
         public string Name { get; set; }
         public string LastName { get; set; }
         public string CellPhoneNumber { get; set; }
-        public Status Status { get; set; }
         public static Entity.Patient MapToEntity(PatientDto dto)
         {
             return new Entity.Patient
@@ -18,7 +16,6 @@ namespace Application.Patient.Dto
                 Name = dto.Name,
                 LastName = dto.LastName,
                 CellPhoneNumber = dto.CellPhoneNumber,
-                Status = dto.Status,
             };
         }
         public static PatientDto MapToDto(Entity.Patient patient)
@@ -29,7 +26,6 @@ namespace Application.Patient.Dto
                 Name = patient.Name,
                 LastName = patient.LastName,
                 CellPhoneNumber = patient.CellPhoneNumber,
-                Status = patient.Status,
             };
         }
     }

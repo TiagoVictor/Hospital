@@ -149,7 +149,6 @@ namespace Application.Patient
                 patient.Name = request.Data.Name;
                 patient.LastName = request.Data.LastName;
                 patient.CellPhoneNumber = request.Data.CellPhoneNumber;
-                patient.Status = request.Data.Status;
 
                 await patient.Save(_patientRepository);
 
