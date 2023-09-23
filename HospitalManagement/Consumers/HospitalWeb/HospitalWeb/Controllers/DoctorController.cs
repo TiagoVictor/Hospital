@@ -2,10 +2,12 @@
 using Application.Doctor.Ports;
 using Application.Doctor.Requests;
 using HospitalWeb.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HospitalWeb.Controllers
 {
+    [Authorize(Roles = "Doutor")]
     public class DoctorController : Controller
     {
         private readonly IDoctorManager _doctorManager;
