@@ -5,6 +5,6 @@ namespace Application.MedicalRecord.Responses
     public class MedicalResponse : Response
     {
         public MedicalRecordDto Data;
-        public List<MedicalRecordDto> MedicalRecords;
+        public List<MedicalRecordDto> MedicalRecords = new();
     }
 }

@@ -1,0 +1,30 @@
+﻿@model MedicalRecordViewModel;
+@{
+}
+
+<h1>Fichas Médicas</h1>
+<a class="nav-link text-dark" asp-area="" asp-controller="MedicalRecord" asp-action="CreateMedicalRecord">Cadastrar Fichas Médicas</a>
+
+<table class="table" style="text-align:center">
+    <thead>
+        <tr>
+            <th scope="col">Nome do Paciente</th>
+            <th scope="col">Médico Responsável</th>
+            <th scope="col">Nº de Celular</th>
+            <th scope="col">Editar</th>
+            <th scope="col">Deletar</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Models)
+        {
+            <tr>
+                <td>@item.Patient.Name @item.Patient.LastName</td>
+                <td>@item.Doctor.Name @item.Doctor.LastName</td>
+                <td>@item.Patient.CellPhoneNumber</td>
+                <td><a asp-controller="MedicalRecord" asp-action="UpdateMedicalRecord" asp-route-id="@item.Id">Editar</a></td>
+                <td><a asp-controller="MedicalRecord" asp-action="Delete" asp-route-id="@item.Id">Deletar</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
