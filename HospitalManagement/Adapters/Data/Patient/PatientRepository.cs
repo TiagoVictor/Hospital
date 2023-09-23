@@ -39,14 +39,14 @@ namespace Data.Patient
         {
             return await _context
                 .Patients
-                .FirstOrDefaultAsync(x => x.CellPhoneNumber == cellPhone);
+                .FirstOrDefaultAsync(x => x.CellPhoneNumber == cellPhone) ?? new();
         }
 
         public async Task<Domain.Patient.Entities.Patient> GetPatientByIdAsync(int id)
         {
             return await _context
                 .Patients
-                .FirstOrDefaultAsync(x => x.Id == id);
+                .FirstOrDefaultAsync(x => x.Id == id) ?? new();
         }
 
         public async Task<List<Domain.Patient.Entities.Patient>> GetPatientsAsync()

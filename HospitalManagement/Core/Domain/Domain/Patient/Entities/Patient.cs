@@ -1,6 +1,7 @@
 ﻿using Domain.Patient.Enum;
 using Domain.Patient.Exceptions;
 using Domain.Patient.Ports;
+using PhoneNumbers;
 using Entity =  Domain.MedicalRecord.Entities;
 
 namespace Domain.Patient.Entities
@@ -31,8 +32,15 @@ namespace Domain.Patient.Entities
                 throw new CellPhoneNullException();
         }
 
+        private void PadronizeCellphoneNumber()
+        {
+            PhoneNumber pn = PhoneNumberUtil.GetInstance().Parse(CellPhoneNumber, "BR");
+            CellPhoneNumber = PhoneNumberUtil.GetInstance().Format(pn, PhoneNumberFormat.INTERNATIONAL).Trim();
+        }
+
         public async Task Save(IPatientRepository repository)
         {
+            PadronizeCellphoneNumber();
             ValidateState();
 
             if (Id == 0)

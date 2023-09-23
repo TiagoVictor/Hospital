@@ -11,4 +11,8 @@
     <Folder Include="Patient\ValueObjects\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="libphonenumber-csharp" Version="8.13.21" />
+  </ItemGroup>
+
 </Project>
