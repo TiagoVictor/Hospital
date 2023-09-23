@@ -107,6 +107,7 @@ namespace Application.Doctor
 
             return new DoctorResponse
             {
+                Success = true,
                 Data = doctor
             };
         }
@@ -127,6 +128,7 @@ namespace Application.Doctor
 
             return new DoctorResponse
             {
+                Success = true,
                 Data = doctor
             };
         }

@@ -96,6 +96,7 @@ namespace Application.MedicalRecord
 
             return new MedicalResponse
             {
+                Success = true,
                 Data = medicalRecord
             };
         }
@@ -155,6 +156,7 @@ namespace Application.MedicalRecord
 
                 return new MedicalResponse
                 {
+                    Success = true,
                     Data = request.Data,
                 };
                 
