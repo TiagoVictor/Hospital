@@ -40,24 +40,32 @@ namespace HospitalWeb.Controllers
         {
             if (loginViewModel.UserType == UserType.Doutor)
             {
-                var doctorRequest = new CreateDoctorRequest
+                ModelState.Remove("CellPhoneNumber");
+                if (ModelState.IsValid)
                 {
-                    Data = LoginViewModel.ViewToDoctorDto(loginViewModel)
-                };
+                    var doctorRequest = new CreateDoctorRequest
+                    {
+                        Data = LoginViewModel.ViewToDoctorDto(loginViewModel)
+                    };
 
-                await _doctorManager.CreateDoctorAsync(doctorRequest);
+                    await _doctorManager.CreateDoctorAsync(doctorRequest);
+                }
             }
             else
             {
-                var patientRequest = new CreatePatientRequest
+                ModelState.Remove("Crm");
+                if (ModelState.IsValid)
                 {
-                    Data = LoginViewModel.ViewToPatientDto(loginViewModel)
-                };
+                    var patientRequest = new CreatePatientRequest
+                    {
+                        Data = LoginViewModel.ViewToPatientDto(loginViewModel)
+                    };
 
-                await _patientManager.CreatePatientAsync(patientRequest);
+                    await _patientManager.CreatePatientAsync(patientRequest);
+                }
             }
-
             return RedirectToAction("Index");
+
         }
 
         [HttpGet]

@@ -10,10 +10,12 @@
         <div class="form-group mt-3">
             <label asp-for="Name" class="form-label"></label>
             <input asp-for="Name" type="text" class="form-control">
+            <span asp-validation-for="Name" class="text-danger"></span>
         </div>
         <div class="form-group mt-3">
             <label asp-for="LastName" class="form-label"></label>
             <input asp-for="LastName" type="text" class="form-control">
+            <span asp-validation-for="LastName" class="text-danger"></span>
         </div>
         <div class="form-group mt-3">
             <label asp-for="UserType"></label>
@@ -23,6 +25,7 @@
         <div class="form-group mt-3">
             <label asp-for="Crm" class="form-label"></label>
             <input asp-for="Crm" type="text" class="form-control">
+            <span asp-validation-for="Crm" class="text-danger"></span>
         </div>
         <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Salvar</button>
     </form>

@@ -17,7 +17,7 @@
 
         <div class="form-group mt-3" id="CellDiv" style="display:none">
             <label asp-for="CellPhoneNumber"></label>
-            <input asp-for="CellPhoneNumber" type="text" class="form-control">
+            <input asp-for="CellPhoneNumber" type="text" value="+55" onkeyup="handlePhone(event)" class="form-control phone">
         </div>
 
         <div class="form-group mt-3" id="CrmDiv" style="display:none">
@@ -31,7 +31,12 @@
     </form>
 </main>
 
+<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
 <script>
+    $(document).ready(function () {
+        $('.phone').mask('+55 00 00000-0000')
+    });
+
     function getCurrentInput(selectObject) {
         var value = selectObject.value;
 
