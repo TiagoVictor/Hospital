@@ -89,7 +89,7 @@ namespace Application.MedicalRecord
 
         public async Task<MedicalResponse> GetMedicalRecordByIdAsync(int id)
         {
-            var medicalRecord = MedicalRecordDto.MapToDto(await _medicalRecordRepository.GetMedicalRecordByIdAsync(id));
+            var medicalRecord = await _medicalRecordRepository.GetMedicalRecordByIdAsync(id);
 
             if (string.IsNullOrEmpty(medicalRecord.Description))
             {
@@ -104,7 +104,7 @@ namespace Application.MedicalRecord
             return new MedicalResponse
             {
                 Success = true,
-                Data = medicalRecord
+                Data = MedicalRecordDto.MapToDto(medicalRecord)
             };
         }
 

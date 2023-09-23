@@ -93,7 +93,7 @@ namespace Application.Doctor
 
         public async Task<DoctorResponse> GetDoctorByCrmAsync(string crm)
         {
-            var doctor = DoctorDto.MapToDto(await _doctorRepository.GetDoctorByCrmAsync(crm));
+            var doctor = await _doctorRepository.GetDoctorByCrmAsync(crm);
 
             if (doctor == null)
             {
@@ -108,15 +108,15 @@ namespace Application.Doctor
             return new DoctorResponse
             {
                 Success = true,
-                Data = doctor
+                Data = DoctorDto.MapToDto(doctor)
             };
         }
 
         public async Task<DoctorResponse> GetDoctorByIdAsync(int id)
         {
-            var doctor = DoctorDto.MapToDto(await _doctorRepository.GetDoctorById(id));
+            var doctor = await _doctorRepository.GetDoctorById(id);
 
-            if (string.IsNullOrEmpty(doctor.Name))
+            if (doctor.Id == 0)
             {
                 return new DoctorResponse
                 {
@@ -129,7 +129,7 @@ namespace Application.Doctor
             return new DoctorResponse
             {
                 Success = true,
-                Data = doctor
+                Data = DoctorDto.MapToDto(doctor)
             };
         }
 

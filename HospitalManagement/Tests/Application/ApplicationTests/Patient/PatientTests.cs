@@ -138,7 +138,7 @@ namespace ApplicationTests
 
             var res = await patientManager.GetPatientByIdAsync(333);
 
-            Assert.NotNull(res);
+            Assert.Null(res.Data);
             Assert.False(res.Success);
             Assert.Equal(ErrorCodes.PATIENT_NOT_FOUND, res.ErrorCode);
             Assert.Equal("Patient not found.", res.Message);
