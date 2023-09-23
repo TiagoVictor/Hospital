@@ -23,7 +23,7 @@
                 <td>@item.Doctor.Name @item.Doctor.LastName</td>
                 <td>@item.Patient.CellPhoneNumber</td>
                 <td><a asp-controller="MedicalRecord" asp-action="UpdateMedicalRecord" asp-route-id="@item.Id">Editar</a></td>
-                <td><a asp-controller="MedicalRecord" asp-action="DeleteMedicalRecord" asp-route-id="@item.Id">Deletar</a></td>
+                <td><a asp-controller="MedicalRecord" asp-action="Delete" asp-route-id="@item.Id">Deletar</a></td>
             </tr>
         }
     </tbody>

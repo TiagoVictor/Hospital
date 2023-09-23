@@ -33,7 +33,7 @@ namespace Application.MedicalRecord
                 medicalRecord.Doctor = await _doctorRepository.GetDoctorById(request.Data.DoctorDto.Id);
 
                 await medicalRecord.Save(_medicalRecordRepository);
-                request.Data.Id = request.Data.Id;
+                request.Data.Id = medicalRecord.Id;
 
                 return new MedicalResponse
                 {

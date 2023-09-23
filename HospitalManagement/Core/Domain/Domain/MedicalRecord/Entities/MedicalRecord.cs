@@ -8,6 +8,7 @@ namespace Domain.MedicalRecord.Entities
         public int Id { get; set; }
         public Doctor.Entities.Doctor Doctor { get; set; } = new();
         public Patient.Entities.Patient Patient { get; set; } = new();
+        public string Description { get; set; }
 
         public void ValidateState()
         {

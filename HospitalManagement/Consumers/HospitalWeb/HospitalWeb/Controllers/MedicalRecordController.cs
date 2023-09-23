@@ -39,11 +39,15 @@ namespace HospitalWeb.Controllers
             return View(medicalRecordViewModel);
         }
 
-        public async Task<IActionResult> DeleteMedicalRecord(int id)
+        public async Task<IActionResult> UpdateMedicalRecord(int id)
         {
             var medicalRecord = await _medicalRecordManager.GetMedicalRecordByIdAsync(id);
+            var medicalView = MedicalRecordViewModel.DtoToView(medicalRecord.Data);
 
-            return View(MedicalRecordViewModel.DtoToView(medicalRecord.Data));
+            var patients = await _patientManager.GetPatientsAsync();
+            patients.Patients.ForEach(x => medicalView.Patients.Add(PatientViewModel.DtoToView(x)));
+
+            return View(medicalView);
         }
 
         [HttpPost]
@@ -59,7 +63,7 @@ namespace HospitalWeb.Controllers
 
                 var response = await _medicalRecordManager.CreateMedicalRecordAsync(request);
 
-                if (response.Success) return View("UpdateMedicalRecord", MedicalRecordViewModel.DtoToView(response.Data));
+                if (response.Success) return RedirectToAction("UpdateMedicalRecord", response.Data.Id);
 
                 return response.ErrorCode switch
                 {
@@ -71,6 +75,8 @@ namespace HospitalWeb.Controllers
             }
             else
             {
+                var patients = await _patientManager.GetPatientsAsync();
+                patients.Patients.ForEach(x => medicalRecordViewModel.Patients.Add(PatientViewModel.DtoToView(x)));
                 return View("CreateMedicalRecord", medicalRecordViewModel);
             }
         }
@@ -92,6 +98,8 @@ namespace HospitalWeb.Controllers
             }
             else
             {
+                var patients = await _patientManager.GetPatientsAsync();
+                patients.Patients.ForEach(x => medicalRecordViewModel.Patients.Add(PatientViewModel.DtoToView(x)));
                 return View("UpdateMedicalRecord", medicalRecordViewModel);
             }
         }

@@ -38,6 +38,7 @@ namespace Data.MedicalRecord
         {
             return await _context
                 .MedicalRecords
+                .Include(x => x.Patient)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
