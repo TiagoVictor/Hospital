@@ -38,14 +38,14 @@ namespace Data.Doctor
         {
             return await _context
                 .Doctors
-                .FirstOrDefaultAsync(x => x.Crm == crm) ?? new();
+                .FirstOrDefaultAsync(x => x.Crm == crm);
         }
 
         public async Task<Domain.Doctor.Entities.Doctor> GetDoctorById(int id)
         {
             return await _context
                 .Doctors
-                .FirstOrDefaultAsync(x => x.Id == id) ?? new();
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<List<Domain.Doctor.Entities.Doctor>> GetDoctorsAsync()

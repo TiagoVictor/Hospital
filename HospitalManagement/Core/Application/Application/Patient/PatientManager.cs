@@ -80,7 +80,7 @@ namespace Application.Patient
 
         public async Task<PatientResponse> GetPatientByCellPhoneAsync(string cellPhone)
         {
-            var patient = PatientDto.MapToDto(await _patientRepository.GetPatientByCellPhoneAsync(cellPhone));
+            var patient = await _patientRepository.GetPatientByCellPhoneAsync(cellPhone);
 
             if (patient == null)
             {
@@ -95,15 +95,15 @@ namespace Application.Patient
             return new PatientResponse
             {
                 Success = true,
-                Data = patient
+                Data = PatientDto.MapToDto(patient)
             };
         }
 
         public async Task<PatientResponse> GetPatientByIdAsync(int id)
         {
-            var patient = PatientDto.MapToDto(await _patientRepository.GetPatientByIdAsync(id));
+            var patient = await _patientRepository.GetPatientByIdAsync(id);
 
-            if (patient == null)
+            if (patient.Id == 0)
             {
                 return new PatientResponse
                 {
@@ -116,7 +116,7 @@ namespace Application.Patient
             return new PatientResponse
             {
                 Success = true,
-                Data = patient
+                Data = PatientDto.MapToDto(patient)
             };
         }
 
