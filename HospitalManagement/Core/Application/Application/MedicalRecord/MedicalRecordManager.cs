@@ -113,6 +113,20 @@ namespace Application.MedicalRecord
             };
         }
 
+        public async Task<MedicalResponse> GetMedicalRecordsByPatientIdAsync(int patientId)
+        {
+            var medicalRecords = await _medicalRecordRepository.GetMedicalRecordsByPatientIdAsync(patientId);
+
+            var medicalResponse = new MedicalResponse();
+
+            medicalRecords.ForEach(x => medicalResponse.MedicalRecords.Add(MedicalRecordDto.MapToDto(x)));
+
+            return new MedicalResponse
+            {
+                MedicalRecords = medicalResponse.MedicalRecords
+            };
+        }
+
         public async Task<MedicalResponse> UpdateMedicalRecordAsync(UpdateMedicalRecordRequest request)
         {
             try

@@ -17,9 +17,6 @@ namespace HospitalWeb.Models
         [DisplayName("Sobrenome")]
         public string LastName { get; set; }
 
-        [DisplayName("Senha")]
-        public string Password { get; set; }
-
         [DisplayName("Tipo de Usuário")]
         public UserType UserType { get; set; }
 

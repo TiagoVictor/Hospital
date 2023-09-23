@@ -25,6 +25,7 @@ namespace HospitalWeb.Models
         [Required(ErrorMessage = "Campo Status é obrigatório.")]
         public Status Status { get; set; }
         public List<PatientViewModel> Models { get; set; } = new();
+        public List<MedicalRecordViewModel> MedicalRecords { get; set; } = new();
 
         public static PatientDto ViewToDto (PatientViewModel model)
         {

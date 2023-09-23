@@ -7,5 +7,6 @@
         Task DeleteMedicalRecordAsync(Entities.MedicalRecord medicalRecord);
         Task<Entities.MedicalRecord> GetMedicalRecordByIdAsync(int id);
         Task<List<Entities.MedicalRecord>> GetMedicalRecordsAsync();
+        Task<List<Entities.MedicalRecord>> GetMedicalRecordsByPatientIdAsync(int patientId);
     }
 }
