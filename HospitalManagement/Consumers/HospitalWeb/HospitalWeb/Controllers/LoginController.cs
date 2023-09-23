@@ -2,11 +2,9 @@
 using Application.Doctor.Requests;
 using Application.Patient.Ports;
 using Application.Patient.Requests;
-using Domain.Patient.Entities;
 using HospitalWeb.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -127,7 +125,7 @@ namespace HospitalWeb.Controllers
                         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, authProperties);
 
 
-                        return RedirectToAction("Index", "Home");
+                        return RedirectToAction("Index", "MedicalRecord");
                     }
                 }
 

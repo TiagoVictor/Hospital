@@ -118,6 +118,8 @@ namespace Application.MedicalRecord
             try
             {
                 var medicalRecord = await _medicalRecordRepository.GetMedicalRecordByIdAsync(request.Id);
+                medicalRecord.Patient = await _patientRepository.GetPatientByIdAsync(request.Data.PatientDto.Id);
+                medicalRecord.Doctor = await _doctorRepository.GetDoctorById(request.Data.DoctorDto.Id);
 
                 if (medicalRecord == null)
                 {
@@ -129,8 +131,9 @@ namespace Application.MedicalRecord
                     };
                 }
 
-                medicalRecord.Doctor = DoctorDto.MapToEntity(request.Data.DoctorDto);
-                medicalRecord.Patient = PatientDto.MapToEntity(request.Data.PatientDto);
+                medicalRecord.Description = request.Data.Description;
+                medicalRecord.Doctor.Id = request.Data.DoctorDto.Id;
+                medicalRecord.Patient.Id = request.Data.PatientDto.Id;
 
                 await medicalRecord.Save(_medicalRecordRepository);
 

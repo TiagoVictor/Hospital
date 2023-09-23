@@ -39,7 +39,7 @@ namespace Data.MedicalRecord
             return await _context
                 .MedicalRecords
                 .Include(x => x.Patient)
-                .FirstOrDefaultAsync(x => x.Id == id);
+                .FirstOrDefaultAsync(x => x.Id == id) ?? new();
         }
 
         public async Task<List<Domain.MedicalRecord.Entities.MedicalRecord>> GetMedicalRecordsAsync()
