@@ -78,6 +78,27 @@ namespace Application.Patient
             await _patientRepository.DeletePatientAsync(patient);
         }
 
+        public async Task<PatientResponse> GetPatientByCellPhoneAsync(string cellPhone)
+        {
+            var patient = PatientDto.MapToDto(await _patientRepository.GetPatientByCellPhoneAsync(cellPhone));
+
+            if (patient == null)
+            {
+                return new PatientResponse
+                {
+                    Success = false,
+                    Message = "Patient not found.",
+                    ErrorCode = ErrorCodes.PATIENT_NOT_FOUND
+                };
+            }
+
+            return new PatientResponse
+            {
+                Success = true,
+                Data = patient
+            };
+        }
+
         public async Task<PatientResponse> GetPatientByIdAsync(int id)
         {
             var patient = PatientDto.MapToDto(await _patientRepository.GetPatientByIdAsync(id));

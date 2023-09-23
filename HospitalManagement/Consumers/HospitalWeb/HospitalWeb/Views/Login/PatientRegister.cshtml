@@ -1,0 +1,34 @@
+﻿@model LoginViewModel;
+@{
+    Layout = "_LoginLayout";
+}
+
+<main class="form-signin">
+    <form asp-action="Post" method="post">
+        <h1 class="h3 mb-3 fw-normal">Cadastre-se</h1>
+
+        <div class="form-group mt-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" type="text" class="form-control">
+        </div>
+        <div class="form-group mt-3">
+            <label asp-for="LastName" class="form-label"></label>
+            <input asp-for="LastName" type="text" class="form-control">
+        </div>
+        <div class="form-group mt-3">
+            <label asp-for="UserType"></label>
+            <input type="text" asp-for="UserType" value="@UserType.Doutor" class="form-control" readonly />
+        </div>
+
+        <div class="form-group mt-3">
+            <label asp-for="CellPhoneNumber" class="form-label"></label>
+            <input asp-for="CellPhoneNumber" type="text" class="form-control">
+        </div>
+
+        <div class="form-group mt-3">
+            <label asp-for="Password" class="form-label"></label>
+            <input asp-for="Password" type="password" class="form-control">
+        </div>
+        <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Salvar</button>
+    </form>
+</main>

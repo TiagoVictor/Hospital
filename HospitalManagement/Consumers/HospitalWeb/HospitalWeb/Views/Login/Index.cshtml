@@ -1,0 +1,48 @@
+﻿@model LoginViewModel;
+@{
+    Layout = "_LoginLayout";
+}
+
+
+<main class="form-signin">
+    <form asp-action="Login" method="get">
+        <div class="form-group">
+            <label asp-for="UserType"></label>
+            <select asp-for="UserType" class="form-control" id="userTypeSelect" onchange="getCurrentInput(this)">
+                <option>Selecione</option>
+                <option value="@UserType.Doutor">Doutor</option>
+                <option value="@UserType.Paciente">Paciente</option>
+            </select>
+        </div>
+
+        <div class="form-group mt-3" id="CellDiv" style="display:none">
+            <label asp-for="CellPhoneNumber"></label>
+            <input asp-for="CellPhoneNumber" type="text" class="form-control">
+        </div>
+
+        <div class="form-group mt-3" id="CrmDiv" style="display:none">
+            <label asp-for="Crm"></label>
+            <input asp-for="Crm" type="text" class="form-control">
+        </div>
+
+        <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Login</button>
+        <button asp-action="PatientRegister" class="w-100 btn btn-lg btn-secondary mt-3" type="submit">É Paciente? Registre-se</button>
+        <button asp-action="DoctorRegister" class="w-100 btn btn-lg btn-secondary mt-3" type="submit">É Médico? Registre-se</button>
+    </form>
+</main>
+
+<script>
+    function getCurrentInput(selectObject) {
+        var value = selectObject.value;
+
+        if (value === "Doutor") {
+            document.getElementById("CrmDiv").style.display = 'block';
+            document.getElementById("CellDiv").style.display = 'none';
+        }
+
+        if (value === "Paciente") {
+            document.getElementById("CellDiv").style.display = 'block';
+            document.getElementById("CrmDiv").style.display = 'none';
+        }
+    }
+</script>

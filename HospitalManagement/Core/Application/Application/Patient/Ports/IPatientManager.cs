@@ -10,5 +10,6 @@ namespace Application.Patient.Ports
         Task DeletePatientAsync(int id);
         Task<PatientResponse> GetPatientByIdAsync(int id);
         Task<PatientResponse> GetPatientsAsync();
+        Task<PatientResponse> GetPatientByCellPhoneAsync(string cellPhone);
     }
 }

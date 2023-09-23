@@ -91,6 +91,26 @@ namespace Application.Doctor
             };
         }
 
+        public async Task<DoctorResponse> GetDoctorByCrmAsync(string crm)
+        {
+            var doctor = DoctorDto.MapToDto(await _doctorRepository.GetDoctorByCrmAsync(crm));
+
+            if (doctor == null)
+            {
+                return new DoctorResponse
+                {
+                    Success = false,
+                    Message = "Doctor was not found",
+                    ErrorCode = ErrorCodes.DOCTOR_NOT_FOUND
+                };
+            }
+
+            return new DoctorResponse
+            {
+                Data = doctor
+            };
+        }
+
         public async Task<DoctorResponse> GetDoctorByIdAsync(int id)
         {
             var doctor = DoctorDto.MapToDto(await _doctorRepository.GetDoctorById(id));

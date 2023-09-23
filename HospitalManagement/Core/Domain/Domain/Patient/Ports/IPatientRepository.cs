@@ -7,5 +7,6 @@
         Task DeletePatientAsync(Entities.Patient patient);
         Task<Entities.Patient> GetPatientByIdAsync(int id);
         Task<List<Entities.Patient>> GetPatientsAsync();
+        Task<Entities.Patient> GetPatientByCellPhoneAsync(string cellPhone);
     }
 }

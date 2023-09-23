@@ -38,6 +38,10 @@ namespace Data.Doctor.Mapping
                 .HasColumnName("Status")
                 .HasColumnType("INTEGER")
                 .HasMaxLength(10);
+
+
+            builder.HasIndex(x => x.Id, "IDX_DOCTOR_ID");
+            builder.HasIndex(x => x.Crm, "IDX_DOCTOR_CRM").IsUnique();
         }
     }
 }

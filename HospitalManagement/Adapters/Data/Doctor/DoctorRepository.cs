@@ -34,6 +34,13 @@ namespace Data.Doctor
                 .SaveChangesAsync();
         }
 
+        public async Task<Domain.Doctor.Entities.Doctor> GetDoctorByCrmAsync(string crm)
+        {
+            return await _context
+                .Doctors
+                .FirstOrDefaultAsync(x => x.Crm == crm);
+        }
+
         public async Task<Domain.Doctor.Entities.Doctor> GetDoctorById(int id)
         {
             return await _context
