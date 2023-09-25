@@ -73,7 +73,7 @@ namespace HospitalWeb.Controllers
 
                 _ = await _doctorManager.UpdateDoctorAsync(request);
 
-                return View("Index");
+                return RedirectToAction("Index");
             }
             else
             {
@@ -95,7 +95,7 @@ namespace HospitalWeb.Controllers
         public async Task<IActionResult> DeleteDoctor(int id)
         {
             await _doctorManager.DeleteDoctorAsync(id);
-            return View("Index");
+            return RedirectToAction("Index");
         }
     }
 }
