@@ -24,7 +24,7 @@ namespace HospitalWeb.Models
         public UserType UserType { get; set; }
 
         [DisplayName("Nº de Celular")]
-        [RegularExpression("^(?:(?:\\+|00)?(55)\\s?)?(?:\\(?([1-9][0-9])\\)?\\s?)?(?:((?:9\\d|[2-9])\\d{3})\\-?(\\d{4}))$")]
+        [RegularExpression("^(?:(?:\\+|00)?(55)\\s?)?(?:\\(?([1-9][0-9])\\)?\\s?)?(?:((?:9\\d|[2-9])\\d{3})\\-?(\\d{4}))$", ErrorMessage = "Insira um numero de celular válido.")]
         [Required(ErrorMessage = "O campo Nº de Celular é obrigatório.")]
         public string CellPhoneNumber { get; set; }
 

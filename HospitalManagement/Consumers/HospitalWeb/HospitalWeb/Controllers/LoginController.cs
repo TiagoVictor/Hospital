@@ -49,7 +49,11 @@ namespace HospitalWeb.Controllers
                     };
 
                     await _doctorManager.CreateDoctorAsync(doctorRequest);
+
+                    return View("Index");
                 }
+
+                return View("DoctorRegister", loginViewModel);
             }
             else
             {
@@ -62,10 +66,12 @@ namespace HospitalWeb.Controllers
                     };
 
                     await _patientManager.CreatePatientAsync(patientRequest);
-                }
-            }
-            return RedirectToAction("Index");
 
+                    return View("Index");
+                }
+
+                return View("PatientRegister", loginViewModel);
+            }
         }
 
         [HttpGet]
@@ -137,11 +143,11 @@ namespace HospitalWeb.Controllers
                     }
                 }
 
-                return RedirectToAction("Index");
+                return View("Index");
             }
             catch (Exception)
             {
-                return RedirectToAction("Index");
+                return View("Index");
             }
         }
 
@@ -149,7 +155,7 @@ namespace HospitalWeb.Controllers
         {
             await HttpContext.SignOutAsync();
 
-            return RedirectToAction("Index");
+            return View("Index");
         }
     }
 }

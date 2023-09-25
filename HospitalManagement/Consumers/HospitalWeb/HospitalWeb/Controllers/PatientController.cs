@@ -67,16 +67,8 @@ namespace HospitalWeb.Controllers
 
                 var response = await _patientManager.CreatePatientAsync(request);
 
-                if (response.Success) return View("UpdatePatient", PatientViewModel.DtoToView(response.Data));
-
-                return response.ErrorCode switch
-                {
-                    ErrorCodes.PATIENT_INVALID_NAME => BadRequest(response),
-                    ErrorCodes.PATIENT_INVALID_LASTNAME => BadRequest(response),
-                    ErrorCodes.PATIENT_INVALID_CELLPHONE_NUMBER => BadRequest(response),
-                    ErrorCodes.PATIENT_COULD_NOT_SAVE => BadRequest(response),
-                    _ => BadRequest(500)
-                };
+                return response.Success ? View("UpdatePatient", PatientViewModel.DtoToView(response.Data)) : 
+                    View("CreatePatient", patientViewModel);
             }
             else
             {
