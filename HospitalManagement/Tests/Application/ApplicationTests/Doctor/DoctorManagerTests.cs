@@ -133,7 +133,7 @@ namespace ApplicationTests
 
             var doctor = new Doctor();
 
-            fakeRepo.Setup(x => x.GetDoctorById(333)).Returns(Task.FromResult<Doctor>(doctor));
+            fakeRepo.Setup(x => x.GetDoctorByIdAsync(333)).Returns(Task.FromResult<Doctor>(doctor));
 
             doctorManager = new DoctorManager(fakeRepo.Object);
 
@@ -158,7 +158,7 @@ namespace ApplicationTests
                 Crm = "12333"
             };
 
-            fakeRepo.Setup(x => x.GetDoctorById(1)).Returns(Task.FromResult((Doctor?)fakeDoctor));
+            fakeRepo.Setup(x => x.GetDoctorByIdAsync(1)).Returns(Task.FromResult((Doctor?)fakeDoctor));
 
             doctorManager = new DoctorManager(fakeRepo.Object);
 

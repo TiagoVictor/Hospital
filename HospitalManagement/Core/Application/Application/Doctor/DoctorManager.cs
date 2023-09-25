@@ -70,7 +70,7 @@ namespace Application.Doctor
 
         public async Task DeleteDoctorAsync(int id)
         {
-            var doctor = await _doctorRepository.GetDoctorById(id);
+            var doctor = await _doctorRepository.GetDoctorByIdAsync(id);
 
             if (doctor == null)
                 return;
@@ -114,7 +114,7 @@ namespace Application.Doctor
 
         public async Task<DoctorResponse> GetDoctorByIdAsync(int id)
         {
-            var doctor = await _doctorRepository.GetDoctorById(id);
+            var doctor = await _doctorRepository.GetDoctorByIdAsync(id);
 
             if (doctor.Id == 0)
             {
@@ -137,7 +137,7 @@ namespace Application.Doctor
         {
             try
             {
-                var doctor = await _doctorRepository.GetDoctorById(request.Id);
+                var doctor = await _doctorRepository.GetDoctorByIdAsync(request.Id);
 
                 if (doctor == null)
                 {

@@ -54,7 +54,7 @@ namespace ApplicationTests
             var fakeRepoDoc = new Mock<IDoctorRepository>();
             fakeRepo.Setup(x => x.CreateMedicalRecordAsync(It.IsAny<MedicalRecord>())).Returns(Task.FromResult(expectedId));
             fakeRepoPat.Setup(x => x.GetPatientByIdAsync(1)).Returns(Task.FromResult(patient));
-            fakeRepoDoc.Setup(x => x.GetDoctorById(1)).Returns(Task.FromResult(doctor));
+            fakeRepoDoc.Setup(x => x.GetDoctorByIdAsync(1)).Returns(Task.FromResult(doctor));
             medicalRecordManager = new MedicalRecordManager(fakeRepo.Object, fakeRepoPat.Object, fakeRepoDoc.Object);
 
             var res = await medicalRecordManager.CreateMedicalRecordAsync(request);
@@ -95,7 +95,7 @@ namespace ApplicationTests
             var fakeRepoDoc = new Mock<IDoctorRepository>();
             fakeRepo.Setup(x => x.CreateMedicalRecordAsync(It.IsAny<MedicalRecord>())).Returns(Task.FromResult(1));
             fakeRepoPat.Setup(x => x.GetPatientByIdAsync(1)).Returns(Task.FromResult(patient));
-            fakeRepoDoc.Setup(x => x.GetDoctorById(1)).Returns(Task.FromResult(doctor));
+            fakeRepoDoc.Setup(x => x.GetDoctorByIdAsync(1)).Returns(Task.FromResult(doctor));
             medicalRecordManager = new MedicalRecordManager(fakeRepo.Object, fakeRepoPat.Object, fakeRepoDoc.Object);
 
             var res = await medicalRecordManager.CreateMedicalRecordAsync(request);
@@ -136,7 +136,7 @@ namespace ApplicationTests
             var fakeRepoDoc = new Mock<IDoctorRepository>();
             fakeRepo.Setup(x => x.CreateMedicalRecordAsync(It.IsAny<MedicalRecord>())).Returns(Task.FromResult(1));
             fakeRepoPat.Setup(x => x.GetPatientByIdAsync(1)).Returns(Task.FromResult(patient));
-            fakeRepoDoc.Setup(x => x.GetDoctorById(1)).Returns(Task.FromResult(doctor));
+            fakeRepoDoc.Setup(x => x.GetDoctorByIdAsync(1)).Returns(Task.FromResult(doctor));
             medicalRecordManager = new MedicalRecordManager(fakeRepo.Object, fakeRepoPat.Object, fakeRepoDoc.Object);
 
             var res = await medicalRecordManager.CreateMedicalRecordAsync(request);
@@ -177,7 +177,7 @@ namespace ApplicationTests
             var fakeRepoDoc = new Mock<IDoctorRepository>();
             fakeRepo.Setup(x => x.CreateMedicalRecordAsync(It.IsAny<MedicalRecord>())).Returns(Task.FromResult(1));
             fakeRepoPat.Setup(x => x.GetPatientByIdAsync(1)).Returns(Task.FromResult(patient));
-            fakeRepoDoc.Setup(x => x.GetDoctorById(1)).Returns(Task.FromResult(doctor));
+            fakeRepoDoc.Setup(x => x.GetDoctorByIdAsync(1)).Returns(Task.FromResult(doctor));
             medicalRecordManager = new MedicalRecordManager(fakeRepo.Object, fakeRepoPat.Object, fakeRepoDoc.Object);
 
             var res = await medicalRecordManager.CreateMedicalRecordAsync(request);

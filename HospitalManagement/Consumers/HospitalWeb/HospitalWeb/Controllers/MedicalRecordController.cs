@@ -1,5 +1,4 @@
-﻿using Application;
-using Application.MedicalRecord.Ports;
+﻿using Application.MedicalRecord.Ports;
 using Application.MedicalRecord.Requests;
 using Application.Patient.Ports;
 using HospitalWeb.Models;
@@ -73,15 +72,8 @@ namespace HospitalWeb.Controllers
 
                 var response = await _medicalRecordManager.CreateMedicalRecordAsync(request);
 
-                if (response.Success) return RedirectToAction("Index");
-
-                return response.ErrorCode switch
-                {
-                    ErrorCodes.MEDICAL_RECORD_INVALID_DOCTOR => BadRequest(response),
-                    ErrorCodes.MEDICAL_RECORD_INVALID_PATIENT => BadRequest(response),
-                    ErrorCodes.MEDICAL_RECORD_COULD_NOT_SAVE => BadRequest(response),
-                    _ => BadRequest(500)
-                };
+                return response.Success ? RedirectToAction("Index") :
+                    View("CreateMedicalRecord", medicalRecordViewModel);
             }
             else
             {
@@ -97,6 +89,7 @@ namespace HospitalWeb.Controllers
             ModelState.Remove("Doctor.Crm");
             ModelState.Remove("Doctor.Name");
             ModelState.Remove("Doctor.LastName");
+            ModelState.Remove("Patient.Name");
             ModelState.Remove("Patient.LastName");
             medicalRecordViewModel.Doctor.Id = Convert.ToInt32(User.FindFirst("Id").Value);
             if (ModelState.IsValid)

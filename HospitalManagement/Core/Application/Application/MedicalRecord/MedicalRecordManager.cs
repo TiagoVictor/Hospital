@@ -28,7 +28,7 @@ namespace Application.MedicalRecord
             {
                 var medicalRecord = MedicalRecordDto.MapToEntity(request.Data);
                 medicalRecord.Patient = await _patientRepository.GetPatientByIdAsync(request.Data.PatientDto.Id);
-                medicalRecord.Doctor = await _doctorRepository.GetDoctorById(request.Data.DoctorDto.Id);
+                medicalRecord.Doctor = await _doctorRepository.GetDoctorByIdAsync(request.Data.DoctorDto.Id);
 
                 await medicalRecord.Save(_medicalRecordRepository);
                 request.Data.Id = medicalRecord.Id;
@@ -141,7 +141,7 @@ namespace Application.MedicalRecord
             {
                 var medicalRecord = await _medicalRecordRepository.GetMedicalRecordByIdAsync(request.Id);
                 medicalRecord.Patient = await _patientRepository.GetPatientByIdAsync(request.Data.PatientDto.Id);
-                medicalRecord.Doctor = await _doctorRepository.GetDoctorById(request.Data.DoctorDto.Id);
+                medicalRecord.Doctor = await _doctorRepository.GetDoctorByIdAsync(request.Data.DoctorDto.Id);
 
                 if (medicalRecord == null)
                 {
