@@ -1,5 +1,4 @@
-﻿using Application;
-using Application.Doctor.Ports;
+﻿using Application.Doctor.Ports;
 using Application.Doctor.Requests;
 using HospitalWeb.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -52,16 +51,8 @@ namespace HospitalWeb.Controllers
 
                 var response = await _doctorManager.CreateDoctorAsync(request);
 
-                if (response.Success) return View("UpdateDoctor", DoctorViewModel.DtoToView(response.Data));
-
-                return response.ErrorCode switch
-                {
-                    ErrorCodes.DOCTOR_INVALID_NAME => BadRequest(response),
-                    ErrorCodes.DOCTOR_INVALID_LAST_NAME => BadRequest(response),
-                    ErrorCodes.DOCTOR_INVALID_CRM => BadRequest(response),
-                    ErrorCodes.DOCTOR_COULD_NOT_SAVE => BadRequest(response),
-                    _ => BadRequest(500)
-                };
+                return response.Success ? View("UpdateDoctor", DoctorViewModel.DtoToView(response.Data)) :
+                    View("CreateDoctor", doctorViewModel);
             }
             else
             {
@@ -82,7 +73,7 @@ namespace HospitalWeb.Controllers
 
                 _ = await _doctorManager.UpdateDoctorAsync(request);
 
-                return RedirectToAction("Index");
+                return View("Index");
             }
             else
             {
@@ -104,7 +95,7 @@ namespace HospitalWeb.Controllers
         public async Task<IActionResult> DeleteDoctor(int id)
         {
             await _doctorManager.DeleteDoctorAsync(id);
-            return RedirectToAction("Index");
+            return View("Index");
         }
     }
 }

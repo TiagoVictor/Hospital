@@ -41,7 +41,7 @@ namespace Data.Doctor
                 .FirstOrDefaultAsync(x => x.Crm == crm);
         }
 
-        public async Task<Domain.Doctor.Entities.Doctor> GetDoctorById(int id)
+        public async Task<Domain.Doctor.Entities.Doctor> GetDoctorByIdAsync(int id)
         {
             return await _context
                 .Doctors
