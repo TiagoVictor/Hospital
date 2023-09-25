@@ -72,7 +72,7 @@ namespace HospitalWeb.Controllers
 
                 var response = await _medicalRecordManager.CreateMedicalRecordAsync(request);
 
-                return response.Success ? View("Index") :
+                return response.Success ? RedirectToAction("Index") :
                     View("CreateMedicalRecord", medicalRecordViewModel);
             }
             else
@@ -89,6 +89,7 @@ namespace HospitalWeb.Controllers
             ModelState.Remove("Doctor.Crm");
             ModelState.Remove("Doctor.Name");
             ModelState.Remove("Doctor.LastName");
+            ModelState.Remove("Patient.Name");
             ModelState.Remove("Patient.LastName");
             medicalRecordViewModel.Doctor.Id = Convert.ToInt32(User.FindFirst("Id").Value);
             if (ModelState.IsValid)
@@ -101,7 +102,7 @@ namespace HospitalWeb.Controllers
 
                 _ = await _medicalRecordManager.UpdateMedicalRecordAsync(request);
 
-                return View("Index");
+                return RedirectToAction("Index");
             }
             else
             {
@@ -115,7 +116,7 @@ namespace HospitalWeb.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             await _medicalRecordManager.DeleteMedicalRecordAsync(id);
-            return View("Index");
+            return RedirectToAction("Index");
         }
     }
 }

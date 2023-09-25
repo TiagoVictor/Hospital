@@ -67,7 +67,7 @@ namespace HospitalWeb.Controllers
 
                     await _patientManager.CreatePatientAsync(patientRequest);
 
-                    return View("Index");
+                    return RedirectToAction("Index");
                 }
 
                 return View("PatientRegister", loginViewModel);
@@ -143,11 +143,11 @@ namespace HospitalWeb.Controllers
                     }
                 }
 
-                return View("Index");
+                return RedirectToAction("Index");
             }
             catch (Exception)
             {
-                return View("Index");
+                return RedirectToAction("Index");
             }
         }
 
@@ -155,7 +155,7 @@ namespace HospitalWeb.Controllers
         {
             await HttpContext.SignOutAsync();
 
-            return View("Index");
+            return RedirectToAction("Index");
         }
     }
 }
